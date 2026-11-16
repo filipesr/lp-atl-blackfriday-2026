@@ -2,6 +2,31 @@
 
 import { useEffect, useRef, useState } from "react";
 
+const messages = {
+  py: {
+    title: "Precios sin IVA",
+    body: "Oferta exclusiva para tienda física (web no habilitada para pedidos online en estas fechas).",
+    closing: "¡Te esperamos por la tienda!",
+    ok: "Entendido",
+    close: "Cerrar",
+  },
+  br: {
+    title: "Preços exclusivos para compra na loja.",
+    body: "Não realizamos envios nem entregas para o território Brasileiro.",
+    closing: "Esperamos por você na loja!",
+    ok: "Entendi",
+    close: "Fechar",
+  },
+};
+
+// O mesmo deploy atende os dois domínios: .br mostra a versão BR, o resto (inclusive localhost) a PY.
+// Para testar localmente: ?site=br ou ?site=py.
+function currentSite(): keyof typeof messages {
+  const forced = new URLSearchParams(window.location.search).get("site");
+  if (forced === "br" || forced === "py") return forced;
+  return window.location.hostname.endsWith(".br") ? "br" : "py";
+}
+
 // Qualquer clique na página abre o aviso; cliques dentro do próprio modal não reabrem.
 export function StoreModal() {
   const [open, setOpen] = useState(false);
@@ -28,9 +53,12 @@ export function StoreModal() {
     document.body.style.overflow = open ? "hidden" : "";
   }, [open]);
 
+  // Só renderiza aberto no cliente, então ler window aqui não quebra a hidratação.
+  const text = open ? messages[currentSite()] : null;
+
   return (
     <div ref={rootRef}>
-      {open && (
+      {text && (
         <div
           className="animate-fade-in fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
           onClick={() => setOpen(false)}
@@ -44,7 +72,7 @@ export function StoreModal() {
           >
             <button
               type="button"
-              aria-label="Cerrar"
+              aria-label={text.close}
               className="absolute top-3 right-4 cursor-pointer text-3xl leading-none text-white/70 hover:text-white"
               onClick={() => setOpen(false)}
             >
@@ -55,19 +83,20 @@ export function StoreModal() {
             </p>
             <h2
               id="store-modal-title"
-              className="mt-3 font-condensed text-4xl leading-tight font-extrabold uppercase"
+              className="mt-3 font-condensed text-3xl leading-tight font-extrabold uppercase"
             >
-              Precio en la tienda
+              {text.title}
             </h2>
-            <p className="mt-2 text-xl font-semibold text-white/90">
-              ¡Vení y aprovechá!
+            <p className="mt-3 text-base leading-snug text-white/85">
+              {text.body}
             </p>
+            <p className="mt-4 text-xl font-semibold">{text.closing}</p>
             <button
               type="button"
               className="mt-8 cursor-pointer rounded-full bg-gradient-to-r from-[#ff9a1f] to-[#d96a00] px-8 py-3 font-condensed text-lg font-bold tracking-wide uppercase shadow-lg transition hover:brightness-110"
               onClick={() => setOpen(false)}
             >
-              Entendido
+              {text.ok}
             </button>
           </div>
         </div>
