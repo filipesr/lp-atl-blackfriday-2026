@@ -5,17 +5,22 @@ import { useEffect, useRef, useState } from "react";
 const messages = {
   py: {
     title: "Precios sin IVA",
-    body: "Oferta exclusiva para tienda física (web no habilitada para pedidos online en estas fechas).",
+    body: [
+      "Oferta exclusiva para tienda física",
+      "(web no habilitada para pedidos online en estas fechas).",
+    ],
     closing: "¡Te esperamos por la tienda!",
     ok: "Entendido",
     close: "Cerrar",
+    width: "max-w-[30rem]",
   },
   br: {
     title: "Preços exclusivos para compra na loja.",
-    body: "Não realizamos envios nem entregas para o território Brasileiro.",
+    body: ["Não realizamos envios nem entregas para o território Brasileiro."],
     closing: "Esperamos por você na loja!",
     ok: "Entendi",
     close: "Fechar",
+    width: "max-w-xl",
   },
 };
 
@@ -67,7 +72,7 @@ export function StoreModal() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="store-modal-title"
-            className="animate-modal-in relative w-full max-w-md cursor-default rounded-3xl border-2 border-[#1f3bff] bg-[radial-gradient(ellipse_at_center,#1d5fa3_0%,#12082a_75%)] px-8 py-10 text-center shadow-[0_0_60px_rgba(31,59,255,0.45)]"
+            className={`animate-modal-in relative w-full ${text.width} cursor-default rounded-3xl border-2 border-[#1f3bff] bg-[radial-gradient(ellipse_at_center,#1d5fa3_0%,#12082a_75%)] px-8 py-10 text-center shadow-[0_0_60px_rgba(31,59,255,0.45)]`}
             onClick={(event) => event.stopPropagation()}
           >
             <button
@@ -88,7 +93,12 @@ export function StoreModal() {
               {text.title}
             </h2>
             <p className="mt-3 text-base leading-snug text-white/85">
-              {text.body}
+              {/* Cada item é uma linha; a partir de sm não quebra dentro dela */}
+              {text.body.map((line) => (
+                <span key={line} className="block sm:whitespace-nowrap">
+                  {line}
+                </span>
+              ))}
             </p>
             <p className="mt-4 text-xl font-semibold">{text.closing}</p>
             <button
