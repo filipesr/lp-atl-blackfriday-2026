@@ -30,7 +30,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="es"
       className={`${barlow.variable} ${barlowCondensed.variable} antialiased`}
     >
-      <body>{children}</body>
+      <body className="flex flex-col">{children}</body>
     </html>
   );
 }

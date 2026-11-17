@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { currentSite } from "./site";
 
 const messages = {
   py: {
@@ -24,15 +25,7 @@ const messages = {
   },
 };
 
-// O mesmo deploy atende os dois domínios: .br mostra a versão BR, o resto (inclusive localhost) a PY.
-// Para testar localmente: ?site=br ou ?site=py.
-function currentSite(): keyof typeof messages {
-  const forced = new URLSearchParams(window.location.search).get("site");
-  if (forced === "br" || forced === "py") return forced;
-  return window.location.hostname.endsWith(".br") ? "br" : "py";
-}
-
-// Qualquer clique na página abre o aviso; cliques dentro do próprio modal não reabrem.
+// Qualquer clique na página abre o aviso; cliques dentro do próprio modal ou em [data-no-modal] não.
 export function StoreModal() {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -40,6 +33,7 @@ export function StoreModal() {
   useEffect(() => {
     function onClick(event: MouseEvent) {
       if (rootRef.current?.contains(event.target as Node)) return;
+      if ((event.target as Element).closest?.("[data-no-modal]")) return;
       event.preventDefault();
       setOpen(true);
     }
