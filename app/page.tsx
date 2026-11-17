@@ -100,7 +100,7 @@ function OfferCard({ offer }: { offer: (typeof offers)[number] }) {
   );
 }
 
-// O logo leva à loja do país; os ícones, como o resto da página, só abrem o modal.
+// O logo leva à loja do país; Instagram e Facebook abrem em nova aba. YouTube ainda sem link: abre o modal.
 function Footer() {
   return (
     <footer className="relative mt-4 border-t border-[#1f3bff]/60 bg-[#05041a]/80 shadow-[0_-1px_24px_rgba(31,59,255,0.35)]">
@@ -117,14 +117,14 @@ function Footer() {
           />
         </StoreLink>
         <div className="flex items-center gap-4 text-white lg:gap-5">
-          <a href="#" aria-label="Instagram" className="hover:text-brand">
+          <a href="https://www.instagram.com/atlanticoshopp" target="_blank" rel="noopener noreferrer" data-no-modal aria-label="Instagram" className="hover:text-brand">
             <svg viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="2">
               <rect x="3" y="3" width="18" height="18" rx="5" />
               <circle cx="12" cy="12" r="4" />
               <circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" />
             </svg>
           </a>
-          <a href="#" aria-label="Facebook" className="hover:text-brand">
+          <a href="https://www.facebook.com/atlanticoshopp" target="_blank" rel="noopener noreferrer" data-no-modal aria-label="Facebook" className="hover:text-brand">
             <svg viewBox="0 0 24 24" className="size-6" fill="currentColor">
               <path d="M12 2a10 10 0 0 0-1.56 19.88v-7H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57V12h2.78l-.44 2.89h-2.34v7A10 10 0 0 0 12 2Z" />
             </svg>
@@ -234,7 +234,7 @@ export default function Home() {
           <ArtDirected
             alt="Navegá hacia lo mejor en tecnología"
             desktop={{ src: "/images/banner-final.webp", width: 2000, height: 436 }}
-            mobile={{ src: "/images/banner-final-mobile.webp", width: 1600, height: 311 }}
+            mobile={{ src: "/images/banner-final-mobile-v2.webp", width: 1600, height: 382 }}
           />
         </section>
       </main>
