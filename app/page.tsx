@@ -100,7 +100,7 @@ function OfferCard({ offer }: { offer: (typeof offers)[number] }) {
   );
 }
 
-// O logo leva à loja do país; Instagram e Facebook abrem em nova aba. YouTube ainda sem link: abre o modal.
+// O logo leva à loja do país; as redes sociais abrem em nova aba.
 function Footer() {
   return (
     <footer className="relative mt-4 border-t border-[#1f3bff]/60 bg-[#05041a]/80 shadow-[0_-1px_24px_rgba(31,59,255,0.35)]">
@@ -129,9 +129,9 @@ function Footer() {
               <path d="M12 2a10 10 0 0 0-1.56 19.88v-7H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57V12h2.78l-.44 2.89h-2.34v7A10 10 0 0 0 12 2Z" />
             </svg>
           </a>
-          <a href="#" aria-label="YouTube" className="hover:text-brand">
-            <svg viewBox="0 0 24 24" className="size-7" fill="currentColor">
-              <path d="M21.6 7.2a2.5 2.5 0 0 0-1.77-1.77C18.27 5 12 5 12 5s-6.27 0-7.83.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.77 1.77C5.73 19 12 19 12 19s6.27 0 7.83-.43a2.5 2.5 0 0 0 1.77-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8ZM10 15V9l5.2 3L10 15Z" />
+          <a href="https://www.tiktok.com/@atlanticoshop" target="_blank" rel="noopener noreferrer" data-no-modal aria-label="TikTok" className="hover:text-brand">
+            <svg viewBox="0 0 24 24" className="size-6" fill="currentColor">
+              <path d="M12.53.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07Z" />
             </svg>
           </a>
         </div>
